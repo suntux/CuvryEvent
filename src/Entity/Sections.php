@@ -29,6 +29,12 @@ class Sections
      */
     private $Code;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Structures::class, inversedBy="Sections")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $structures;
+
     public function __construct()
     {
         $this->seances = new ArrayCollection();
@@ -59,6 +65,18 @@ class Sections
     public function setCode(string $Code): self
     {
         $this->Code = $Code;
+
+        return $this;
+    }
+
+    public function getStructures(): ?Structures
+    {
+        return $this->structures;
+    }
+
+    public function setStructures(?Structures $structures): self
+    {
+        $this->structures = $structures;
 
         return $this;
     }

@@ -32,6 +32,11 @@ class Seances
      */
     private $Duree;
 
+    /**
+     * @ORM\OneToOne(targetEntity=RqSeances::class, cascade={"persist", "remove"})
+     */
+    private $Remarques;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Seances
     public function setDuree(\DateTimeInterface $Duree): self
     {
         $this->Duree = $Duree;
+
+        return $this;
+    }
+
+    public function getRemarques(): ?RqSeances
+    {
+        return $this->Remarques;
+    }
+
+    public function setRemarques(?RqSeances $Remarques): self
+    {
+        $this->Remarques = $Remarques;
 
         return $this;
     }

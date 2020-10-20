@@ -17,8 +17,62 @@ class StructuresMembres
      */
     private $id;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Membres::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Membres;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Structures::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Structures;
+
+    /**
+     * @ORM\OneToOne(targetEntity=TypeMembres::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Type;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getMembres(): ?Membres
+    {
+        return $this->Membres;
+    }
+
+    public function setMembres(Membres $Membres): self
+    {
+        $this->Membres = $Membres;
+
+        return $this;
+    }
+
+    public function getStructures(): ?Structures
+    {
+        return $this->Structures;
+    }
+
+    public function setStructures(Structures $Structures): self
+    {
+        $this->Structures = $Structures;
+
+        return $this;
+    }
+
+    public function getType(): ?TypeMembres
+    {
+        return $this->Type;
+    }
+
+    public function setType(TypeMembres $Type): self
+    {
+        $this->Type = $Type;
+
+        return $this;
     }
 }

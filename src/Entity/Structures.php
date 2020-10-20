@@ -34,10 +34,16 @@ class Structures
      */
     private $Telephone;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Sections::class, mappedBy="structures", orphanRemoval=true)
+     */
+    private $Sections;
+
     public function __construct()
     {
-        $this->sections = new ArrayCollection();
+        $this->Sections = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -79,4 +85,36 @@ class Structures
 
         return $this;
     }
+
+    /**
+     * @return Collection|Sections[]
+     */
+    public function getSections(): Collection
+    {
+        return $this->Sections;
+    }
+
+    public function addSection(Sections $section): self
+    {
+        if (!$this->Sections->contains($section)) {
+            $this->Sections[] = $section;
+            $section->setStructures($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Sections $section): self
+    {
+        if ($this->Sections->contains($section)) {
+            $this->Sections->removeElement($section);
+            // set the owning side to null (unless already changed)
+            if ($section->getStructures() === $this) {
+                $section->setStructures(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
