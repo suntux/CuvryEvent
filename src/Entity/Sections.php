@@ -29,17 +29,6 @@ class Sections
      */
     private $Code;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Structures::class, inversedBy="sections")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Structures;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Seances::class, mappedBy="Sections", orphanRemoval=true)
-     */
-    private $seances;
-
     public function __construct()
     {
         $this->seances = new ArrayCollection();
@@ -70,49 +59,6 @@ class Sections
     public function setCode(string $Code): self
     {
         $this->Code = $Code;
-
-        return $this;
-    }
-
-    public function getStructures(): ?Structures
-    {
-        return $this->Structures;
-    }
-
-    public function setStructures(?Structures $Structures): self
-    {
-        $this->Structures = $Structures;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Seances[]
-     */
-    public function getSeances(): Collection
-    {
-        return $this->seances;
-    }
-
-    public function addSeance(Seances $seance): self
-    {
-        if (!$this->seances->contains($seance)) {
-            $this->seances[] = $seance;
-            $seance->setSections($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSeance(Seances $seance): self
-    {
-        if ($this->seances->contains($seance)) {
-            $this->seances->removeElement($seance);
-            // set the owning side to null (unless already changed)
-            if ($seance->getSections() === $this) {
-                $seance->setSections(null);
-            }
-        }
 
         return $this;
     }

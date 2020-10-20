@@ -34,11 +34,6 @@ class Structures
      */
     private $Telephone;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Sections::class, mappedBy="Structures", orphanRemoval=true)
-     */
-    private $sections;
-
     public function __construct()
     {
         $this->sections = new ArrayCollection();
@@ -81,37 +76,6 @@ class Structures
     public function setTelephone(string $Telephone): self
     {
         $this->Telephone = $Telephone;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Sections[]
-     */
-    public function getSections(): Collection
-    {
-        return $this->sections;
-    }
-
-    public function addSection(Sections $section): self
-    {
-        if (!$this->sections->contains($section)) {
-            $this->sections[] = $section;
-            $section->setStructures($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSection(Sections $section): self
-    {
-        if ($this->sections->contains($section)) {
-            $this->sections->removeElement($section);
-            // set the owning side to null (unless already changed)
-            if ($section->getStructures() === $this) {
-                $section->setStructures(null);
-            }
-        }
 
         return $this;
     }

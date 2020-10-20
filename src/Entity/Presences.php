@@ -22,18 +22,6 @@ class Presences
      */
     private $Is_present;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Seances::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Seances;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Membres::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Membres;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -47,30 +35,6 @@ class Presences
     public function setIsPresent(?bool $Is_present): self
     {
         $this->Is_present = $Is_present;
-
-        return $this;
-    }
-
-    public function getSeances(): ?Seances
-    {
-        return $this->Seances;
-    }
-
-    public function setSeances(Seances $Seances): self
-    {
-        $this->Seances = $Seances;
-
-        return $this;
-    }
-
-    public function getMembres(): ?Membres
-    {
-        return $this->Membres;
-    }
-
-    public function setMembres(Membres $Membres): self
-    {
-        $this->Membres = $Membres;
 
         return $this;
     }

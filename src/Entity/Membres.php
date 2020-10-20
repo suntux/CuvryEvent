@@ -44,21 +44,6 @@ class Membres
      */
     private $Mail;
 
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="membres", cascade={"persist", "remove"})
-     */
-    private $Account;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Membres::class, cascade={"persist", "remove"})
-     */
-    private $Tuteur_1;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Membres::class, cascade={"persist", "remove"})
-     */
-    private $Tuteur_2;
-
     public function __construct()
     {
         $this->structures = new ArrayCollection();
@@ -125,42 +110,6 @@ class Membres
     public function setMail(?string $Mail): self
     {
         $this->Mail = $Mail;
-
-        return $this;
-    }
-
-    public function getAccount(): ?User
-    {
-        return $this->Account;
-    }
-
-    public function setAccount(?User $Account): self
-    {
-        $this->Account = $Account;
-
-        return $this;
-    }
-
-    public function getTuteur1(): ?self
-    {
-        return $this->Tuteur_1;
-    }
-
-    public function setTuteur1(?self $Tuteur_1): self
-    {
-        $this->Tuteur_1 = $Tuteur_1;
-
-        return $this;
-    }
-
-    public function getTuteur2(): ?self
-    {
-        return $this->Tuteur_2;
-    }
-
-    public function setTuteur2(?self $Tuteur_2): self
-    {
-        $this->Tuteur_2 = $Tuteur_2;
 
         return $this;
     }

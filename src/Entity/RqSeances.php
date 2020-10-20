@@ -22,11 +22,6 @@ class RqSeances
      */
     private $Remarques;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Seances::class, inversedBy="rqSeances", cascade={"persist", "remove"})
-     */
-    private $Seance;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -40,18 +35,6 @@ class RqSeances
     public function setRemarques(?string $Remarques): self
     {
         $this->Remarques = $Remarques;
-
-        return $this;
-    }
-
-    public function getSeance(): ?Seances
-    {
-        return $this->Seance;
-    }
-
-    public function setSeance(?Seances $Seance): self
-    {
-        $this->Seance = $Seance;
 
         return $this;
     }
